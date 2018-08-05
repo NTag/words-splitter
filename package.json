@@ -1,0 +1,15 @@
+{
+  "name": "words-splitter",
+  "version": "1.0.0",
+  "description": "Split a French sentence without spaces nor accents into words",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Basile Bruneau <basilebruneau@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.10"
+  }
+}
