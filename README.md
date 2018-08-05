@@ -2,6 +2,8 @@
 
 Split a French sentence without any spaces nor accents, into words.
 
+Example: `jepenserestersurparisouprendreletgvpourmarseille` → `Je pense rester sur Paris ou prendre le TGV pour Marseille`
+
 ## Installation
 ```
 npm i words-splitter
@@ -33,6 +35,6 @@ const main = async () => {
 main();
 ```
 
-## Acknowledg
+## Acknowledgement
 Algorithm from https://stackoverflow.com/questions/8870261/how-to-split-text-without-spaces-into-list-of-words.
 List of words created from OpenSubtitle French 2016 database.
