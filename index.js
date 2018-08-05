@@ -1,8 +1,9 @@
 const fs = require('fs');
 const _ = require('lodash');
 const readline = require('readline');
+const path = require('path');
 
-const FILE_WORDS = './words-fr.txt';
+const FILE_WORDS = path.join(__dirname, 'words-fr.txt');
 const WORDS = {};
 let maxLength = 0;
 

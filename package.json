@@ -1,6 +1,6 @@
 {
   "name": "words-splitter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Split a French sentence without spaces nor accents into words",
   "main": "index.js",
   "scripts": {

@@ -32,3 +32,7 @@ const main = async () => {
 
 main();
 ```
+
+## Acknowledg
+Algorithm from https://stackoverflow.com/questions/8870261/how-to-split-text-without-spaces-into-list-of-words.
+List of words created from OpenSubtitle French 2016 database.
