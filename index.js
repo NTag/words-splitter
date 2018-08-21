@@ -6,9 +6,10 @@ const path = require('path');
 const FILE_WORDS = path.join(__dirname, 'words-fr.txt');
 const WORDS = {};
 let maxLength = 0;
+let maxCost = 9e999;
 
 const simplifyWord = (word) => {
-  return _.deburr(word).toLocaleLowerCase().replace(/[^a-z]/g, '');
+  return _.deburr(word.toLocaleLowerCase()).replace(/[^0-9a-z]/g, '');
 };
 
 const loadDictionnary = () => {
@@ -21,18 +22,32 @@ const loadDictionnary = () => {
 
     rl.on('line', (line) => {
       const data = line.split(' ');
-      if (!WORDS[simplifyWord(data[0])]) {
-        WORDS[simplifyWord(data[0])] = {
-          c: parseFloat(data[1]),
+
+      const wordLowerCase = data[0].toLocaleLowerCase();
+      const c = parseFloat(data[1]);
+      if (!WORDS[wordLowerCase] || WORDS[wordLowerCase].c < c) {
+        WORDS[wordLowerCase] = {
+          c,
           w: data[0],
         };
-        nbOcc += parseFloat(data[1]);
+      }
+      const wordSimplified = simplifyWord(data[0]);
+      if (!WORDS[wordSimplified] || WORDS[wordSimplified].c < c) {
+        WORDS[wordSimplified] = {
+          c,
+          w: data[0],
+        };
+        nbOcc += c;
       }
     });
 
     rl.on('close', () => {
       Object.keys(WORDS).forEach((word) => {
-        WORDS[word].c = - Math.log(WORDS[word].c / nbOcc);
+        const c = - Math.log(WORDS[word].c / nbOcc)
+        WORDS[word].c = c;
+        if (c < maxCost) {
+          maxCost = c;
+        }
         if (word.length > maxLength) {
           maxLength = word.length;
         }
@@ -46,7 +61,7 @@ const splitSentence = (s) => {
   const cost = [0];
 
   const bestMatch = (i) => {
-    let best = 9e999;
+    let best = 9e9999;
     let k = 0;
     for (let j = 0; j < i; j += 1) {
       if (WORDS[s.slice(j, i)]) {
@@ -76,7 +91,19 @@ const splitSentence = (s) => {
   return out.reverse().join(' ');
 };
 
+const addWord = (word) => {
+  WORDS[word.toLocaleLowerCase()] = {
+    c: maxCost,
+    w: word,
+  };
+  WORDS[simplifyWord(word)] = {
+    c: maxCost,
+    w: word,
+  };
+};
+
 module.exports = {
-  splitSentence,
+  addWord,
   loadDictionnary,
+  splitSentence,
 };
