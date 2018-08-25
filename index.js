@@ -12,7 +12,7 @@ const simplifyWord = (word) => {
   return _.deburr(word.toLocaleLowerCase()).replace(/[^0-9a-z]/g, '');
 };
 
-const loadDictionnary = () => {
+const loadDictionary = () => {
   return new Promise((resolve) => {
     const rl = readline.createInterface({
       input: fs.createReadStream(FILE_WORDS),
@@ -104,6 +104,6 @@ const addWord = (word) => {
 
 module.exports = {
   addWord,
-  loadDictionnary,
+  loadDictionary,
   splitSentence,
 };

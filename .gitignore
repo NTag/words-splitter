@@ -1,6 +1,5 @@
 node_modules/
 old/
-words-all*
-create-dictionnary.js
-minimize-dictionnary.js
+words-fr-*
 test.js
+frwiki-latest-pages-articles.xml
